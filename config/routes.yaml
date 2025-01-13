@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+crecheLister:
+    path: /creche/lister
+    controller: App\Controller\CrecheController::listers
