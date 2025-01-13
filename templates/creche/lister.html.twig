@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Crèches{% endblock %}
+
+{% block body %}
+    <h1>Liste des Crèches</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for creche in creches %}
+                <tr>
+                    <td>{{ creche.id }}</td>
+                    <td>{{ creche.nom }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucune crèche trouvée</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -4,6 +4,18 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-crecheLister:
+#Index
+
+app_index:
+    path: /
+    controller : App\Controller\IndexController::index
+
+#Creche
+
+app_creche:
+    path: /creche
+    controller: App\Controller\CrecheController::index
+
+app_creche_lister:
     path: /creche/lister
-    controller: App\Controller\CrecheController::listers
+    controller: App\Controller\CrecheController::lister
