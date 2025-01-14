@@ -24,6 +24,10 @@ app_creche_consulter:
     path: /creche/consulter/{id}
     controller: App\Controller\CrecheController::consulter
 
-app_creche_ajoouter:
+app_creche_ajouter:
     path: /creche/ajouter
     controller: App\Controller\CrecheController::ajouter
+
+app_creche_modifier:
+    path: /creche/modifier/{id}
+    controller: App\Controller\CrecheController::modifier

@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Creche;
 use App\Form\CrecheType;
+use App\Form\CrecheModifierType;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CrecheController extends AbstractController
@@ -70,4 +71,31 @@ public function consulter(ManagerRegistry $doctrine, int $id): Response
            return $this->render('creche/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $creches = $doctrine->getRepository(Creche::class)->find($id);
+ 
+	if (!$creches) {
+	    throw $this->createNotFoundException('Aucune creches trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(CrecheModifierType::class, $creches);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $creches = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($creches);
+                 $entityManager->flush();
+                 return $this->render('creche/consulter.html.twig', ['creche' => $creches,]);
+           }
+           else{
+                return $this->render('creche/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
