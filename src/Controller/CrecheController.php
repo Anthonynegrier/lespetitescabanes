@@ -5,7 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Creche;
+use App\Form\CrecheType;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CrecheController extends AbstractController
@@ -44,4 +46,28 @@ public function consulter(ManagerRegistry $doctrine, int $id): Response
             'creche' => $creches,  
         ]);
     }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $creches = new Creche();
+	$form = $this->createForm(CrecheType::class, $creches);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $creches = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($creches);
+            $entityManager->flush();
+            
+   
+ 
+	    return $this->render('creche/consulter.html.twig', ['creche' => $creches,]);
+	}
+	else
+        {
+           
+           return $this->render('creche/ajouter.html.twig', array('form' => $form->createView(),));
+	}
+}
 }
