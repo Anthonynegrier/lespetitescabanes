@@ -29,4 +29,19 @@ public function lister(ManagerRegistry $doctrine){
     ]);	
     
 }
+
+public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $creches = $doctrine->getRepository(Creche::class)->find($id);
+        
+        if (!$creches) {
+            throw $this->createNotFoundException(
+                'Aucune creche trouvée avec le numéro ' . $id
+            );
+        }
+        
+        return $this->render('creche/consulter.html.twig', [
+            'creche' => $creches,  
+        ]);
+    }
 }

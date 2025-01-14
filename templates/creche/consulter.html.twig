@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter la Crèche{% endblock %}
+
+{% block body %}
+    <h1>Consulter la Crèche</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Capacité</th>
+                <th>Contact</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ creche.id }}</td>
+                <td>{{ creche.nom }}</td>
+                <td>{{ creche.adresse }}</td>
+                <td>{{ creche.ville }}</td>
+                <td>{{ creche.copos }}</td>
+                <td>{{ creche.capaccite }}</td>
+                <td>{{ creche.contact }}</td>
+                <td>{{ creche.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_creche_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
