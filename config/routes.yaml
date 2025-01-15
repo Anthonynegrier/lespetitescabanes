@@ -31,3 +31,7 @@ app_creche_ajouter:
 app_creche_modifier:
     path: /creche/modifier/{id}
     controller: App\Controller\CrecheController::modifier
+
+app_creche_supprimer:
+    path: /creche/supprimer/{id}
+    controller: App\Controller\CrecheController::supprimer

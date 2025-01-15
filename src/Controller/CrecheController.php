@@ -98,4 +98,19 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $creches = $doctrine->getRepository(Creche::class)->find($id);
+
+     if (!$creches) {
+         throw $this->createNotFoundException('Aucune creches trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($creches); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_creche_lister');
+ }
 }
