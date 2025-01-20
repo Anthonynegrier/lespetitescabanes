@@ -57,3 +57,7 @@ app_personnel_ajouter:
 app_personnel_modifier:
     path: /personnel/modifier/{id}
     controller: App\Controller\PersonnelController::modifier
+
+app_personnel_supprimer:
+    path: /personnel/supprimer/{id}
+    controller: App\Controller\PersonnelController::supprimer

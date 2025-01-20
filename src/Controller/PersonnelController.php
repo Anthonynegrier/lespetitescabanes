@@ -98,4 +98,19 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $personnels = $doctrine->getRepository(Personnel::class)->find($id);
+
+     if (!$personnels) {
+         throw $this->createNotFoundException('Aucune personnels trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($personnels); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_personnel_lister');
+ }
 }
