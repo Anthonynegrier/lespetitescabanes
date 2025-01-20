@@ -79,3 +79,7 @@ app_avis_consulter:
 app_avis_ajouter:
     path: /avis/ajouter
     controller: App\Controller\AvisController::ajouter
+
+app_avis_modifier:
+    path: /avis/modifier/{id}
+    controller: App\Controller\AvisController::modifier
