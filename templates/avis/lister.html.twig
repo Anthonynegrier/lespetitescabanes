@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste du Avis{% endblock %}
+
+{% block body %}
+    <h1>Liste du Avis</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Personne</th>
+                <th>Description</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for avis in aviss %}
+                <tr>
+                    <td>{{ avis.id }}</td>
+                    <td>{{ avis.personne }}</td>
+                    <td>{{ avis.description }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucun avis trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
