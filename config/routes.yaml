@@ -45,3 +45,7 @@ app_personnel:
 app_personnel_lister:
     path: /personnel/lister
     controller: App\Controller\PersonnelController::lister
+
+app_personnel_consulter:
+    path: /personnel/consulter/{id}
+    controller: App\Controller\PersonnelController::consulter
