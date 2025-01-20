@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CrecheRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CrecheRepository::class)]
@@ -33,6 +35,11 @@ class Creche
 
     #[ORM\Column]
     private ?int $copos = null;
+
+    public function __construct()
+    {
+        $this->personnels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
