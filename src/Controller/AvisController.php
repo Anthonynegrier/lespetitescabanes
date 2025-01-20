@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Avis;
 use App\Form\AvisType;
+use App\Form\AvisModifierType;
+
 
 class AvisController extends AbstractController
 {
@@ -69,4 +71,31 @@ class AvisController extends AbstractController
            return $this->render('avis/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $aviss = $doctrine->getRepository(Avis::class)->find($id);
+ 
+	if (!$aviss) {
+	    throw $this->createNotFoundException('Aucun avis trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(AvisModifierType::class, $aviss);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $aviss = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($aviss);
+                 $entityManager->flush();
+                 return $this->render('avis/consulter.html.twig', ['avis' => $aviss,]);
+           }
+           else{
+                return $this->render('avis/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
