@@ -29,4 +29,19 @@ class AvisController extends AbstractController
         ]);	
         
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $aviss = $doctrine->getRepository(Avis::class)->find($id);
+        
+        if (!$aviss) {
+            throw $this->createNotFoundException(
+                'Aucun avis trouvé avec le numéro ' . $id
+            );
+        }
+        
+        return $this->render('avis/consulter.html.twig', [
+            'avis' => $aviss,
+        ]);
+    }
 }
