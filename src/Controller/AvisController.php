@@ -98,4 +98,20 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ 
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $aviss = $doctrine->getRepository(Avis::class)->find($id);
+
+     if (!$aviss) {
+         throw $this->createNotFoundException('Aucune avis trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($aviss); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_avis_lister');
+ }
 }

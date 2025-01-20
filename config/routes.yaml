@@ -83,3 +83,7 @@ app_avis_ajouter:
 app_avis_modifier:
     path: /avis/modifier/{id}
     controller: App\Controller\AvisController::modifier
+
+app_avis_supprimer:
+    path: /avis/supprimer/{id}
+    controller: App\Controller\AvisController::supprimer
