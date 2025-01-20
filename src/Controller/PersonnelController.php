@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Personnel;
+use App\Form\PersonnelType;
+
 
 class PersonnelController extends AbstractController
 {
@@ -44,4 +46,28 @@ class PersonnelController extends AbstractController
             'personnel' => $personnels,
         ]);
     }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $personnels = new Personnel();
+	$form = $this->createForm(PersonnelType::class, $personnels);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $personnels = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($personnels);
+            $entityManager->flush();
+            
+   
+ 
+	    return $this->render('personnel/consulter.html.twig', ['personnel' => $personnels,]);
+	}
+	else
+        {
+           
+           return $this->render('personnel/ajouter.html.twig', array('form' => $form->createView(),));
+	}
+}
 }
