@@ -53,3 +53,7 @@ app_personnel_consulter:
 app_personnel_ajouter:
     path: /personnel/ajouter
     controller: App\Controller\PersonnelController::ajouter
+
+app_personnel_modifier:
+    path: /personnel/modifier/{id}
+    controller: App\Controller\PersonnelController::modifier
