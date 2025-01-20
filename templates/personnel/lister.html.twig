@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste du Personnel{% endblock %}
+
+{% block body %}
+    <h1>Liste du Personnel</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Poste</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for personnel in personnels %}
+                <tr>
+                    <td>{{ personnel.id }}</td>
+                    <td>{{ personnel.nom }}</td>
+                    <td>{{ personnel.prenom }}</td>
+                    <td>{{ personnel.poste }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucun personnel trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

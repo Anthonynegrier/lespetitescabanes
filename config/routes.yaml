@@ -35,3 +35,13 @@ app_creche_modifier:
 app_creche_supprimer:
     path: /creche/supprimer/{id}
     controller: App\Controller\CrecheController::supprimer
+
+#Personnel
+
+app_personnel:
+    path: /personnel
+    controller: App\Controller\PersonnelController::index
+
+app_personnel_lister:
+    path: /personnel/lister
+    controller: App\Controller\PersonnelController::lister

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Creche;
+use App\Entity\Personnel;
 use App\Form\CrecheType;
 use App\Form\CrecheModifierType;
 use Symfony\Component\Routing\Attribute\Route;
@@ -44,7 +45,7 @@ public function consulter(ManagerRegistry $doctrine, int $id): Response
         }
         
         return $this->render('creche/consulter.html.twig', [
-            'creche' => $creches,  
+            'creche' => $creches,
         ]);
     }
 
