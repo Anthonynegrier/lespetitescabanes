@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Personnel;
 use App\Form\PersonnelType;
+use App\Form\PersonnelModifierType;
 
 
 class PersonnelController extends AbstractController
@@ -70,4 +71,31 @@ class PersonnelController extends AbstractController
            return $this->render('personnel/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $personnels = $doctrine->getRepository(Personnel::class)->find($id);
+ 
+	if (!$personnels) {
+	    throw $this->createNotFoundException('Aucun personnels trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(PersonnelModifierType::class, $personnels);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $personnels = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($personnels);
+                 $entityManager->flush();
+                 return $this->render('personnel/consulter.html.twig', ['personnel' => $personnels,]);
+           }
+           else{
+                return $this->render('personnel/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
