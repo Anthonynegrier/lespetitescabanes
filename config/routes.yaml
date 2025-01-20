@@ -61,3 +61,13 @@ app_personnel_modifier:
 app_personnel_supprimer:
     path: /personnel/supprimer/{id}
     controller: App\Controller\PersonnelController::supprimer
+
+#Avis
+
+app_avis:
+    path: /avis
+    controller: App\Controller\AvisController::index
+
+app_avis_lister:
+    path: /avis/lister
+    controller: App\Controller\AvisController::lister
