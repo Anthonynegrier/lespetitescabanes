@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter la Crèche{% endblock %}
+
+{% block body %}
+    <h1>Consulter la Crèche</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Poste</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ personnel.id }}</td>
+                <td>{{ personnel.nom }}</td>
+                <td>{{ personnel.prenom }}</td>
+                <td>{{ personnel.poste }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_personnel_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

@@ -29,4 +29,19 @@ class PersonnelController extends AbstractController
         ]);	
         
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $personnels = $doctrine->getRepository(Personnel::class)->find($id);
+        
+        if (!$personnels) {
+            throw $this->createNotFoundException(
+                'Aucun personnel trouvé avec le numéro ' . $id
+            );
+        }
+        
+        return $this->render('personnel/consulter.html.twig', [
+            'personnel' => $personnels,
+        ]);
+    }
 }
