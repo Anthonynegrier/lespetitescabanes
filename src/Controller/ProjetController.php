@@ -100,4 +100,19 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $projets = $doctrine->getRepository(Projet::class)->find($id);
+
+     if (!$projets) {
+         throw $this->createNotFoundException('Aucune projets trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($projets); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_projet_lister');
+ }
 }

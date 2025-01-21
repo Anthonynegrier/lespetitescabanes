@@ -109,3 +109,7 @@ app_projet_ajouter:
 app_projet_modifier:
     path: /projet/modifier/{id}
     controller: App\Controller\ProjetController::modifier
+
+app_projet_supprimer:
+    path: /projet/supprimer/{id}
+    controller: App\Controller\ProjetController::supprimer
