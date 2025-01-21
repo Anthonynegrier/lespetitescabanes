@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Projet;
 use App\Form\ProjetType;
+use App\Form\ProjetModifierType;
+
 
 
 
@@ -71,4 +73,31 @@ class ProjetController extends AbstractController
            return $this->render('projet/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $projets = $doctrine->getRepository(Projet::class)->find($id);
+ 
+	if (!$projets) {
+	    throw $this->createNotFoundException('Aucun projets trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(ProjetModifierType::class, $projets);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $projets = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($projets);
+                 $entityManager->flush();
+                 return $this->render('projet/consulter.html.twig', ['projet' => $projets,]);
+           }
+           else{
+                return $this->render('projet/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
