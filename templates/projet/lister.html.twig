@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Projets Pedagogique{% endblock %}
+
+{% block body %}
+    <h1>Liste des Projets Pédagogique</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for projet in projets %}
+                <tr>
+                    <td>{{ projet.id }}</td>
+                    <td>{{ projet.nom }}</td>
+                    <td>{{ projet.description }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucun projet trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
