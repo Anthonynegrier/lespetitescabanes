@@ -97,3 +97,7 @@ app_projet:
 app_projet_lister:
     path: /projet/lister
     controller: App\Controller\ProjetController::lister
+
+app_projet_consulter:
+    path: /projet/consulter/{id}
+    controller: App\Controller\ProjetController::consulter

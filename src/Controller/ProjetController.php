@@ -30,4 +30,19 @@ class ProjetController extends AbstractController
         ]);	
         
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $projets = $doctrine->getRepository(Projet::class)->find($id);
+        
+        if (!$projets) {
+            throw $this->createNotFoundException(
+                'Aucun projet trouvé avec le numéro ' . $id
+            );
+        }
+        
+        return $this->render('projet/consulter.html.twig', [
+            'projet' => $projets,
+        ]);
+    }
 }

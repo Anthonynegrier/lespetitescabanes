@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter les Projets Pedagogique{% endblock %}
+
+{% block body %}
+    <h1>Consulter les Projets Pedagogique</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Nombre de place</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ projet.id }}</td>
+                <td>{{ projet.nom }}</td>
+                <td>{{ projet.description }}</td>
+                <td>{{ projet.place }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_projet_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
