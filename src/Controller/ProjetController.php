@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Projet;
+use App\Form\ProjetType;
+
 
 
 class ProjetController extends AbstractController
@@ -45,4 +47,28 @@ class ProjetController extends AbstractController
             'projet' => $projets,
         ]);
     }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $projets = new Projet();
+	$form = $this->createForm(ProjetType::class, $projets);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $projets = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($projets);
+            $entityManager->flush();
+            
+   
+ 
+	    return $this->render('projet/consulter.html.twig', ['projet' => $projets,]);
+	}
+	else
+        {
+           
+           return $this->render('projet/ajouter.html.twig', array('form' => $form->createView(),));
+	}
+}
 }

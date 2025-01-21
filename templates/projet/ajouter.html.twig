@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter un Projet Pédagogique{% endblock %}
+{% block body %}
+    <a class="bouton-arriere" href="{{ path('app_projet_lister') }}">Retourner en arrière</a>
+    <h1>Ajouter un Personnel</h1>
+    
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
