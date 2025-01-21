@@ -101,3 +101,7 @@ app_projet_lister:
 app_projet_consulter:
     path: /projet/consulter/{id}
     controller: App\Controller\ProjetController::consulter
+
+app_projet_ajouter:
+    path: /projet/ajouter
+    controller: App\Controller\ProjetController::ajouter
