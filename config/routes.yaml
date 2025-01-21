@@ -87,3 +87,13 @@ app_avis_modifier:
 app_avis_supprimer:
     path: /avis/supprimer/{id}
     controller: App\Controller\AvisController::supprimer
+
+#Projet Pedagogique
+
+app_projet:
+    path: /projet
+    controller: App\Controller\ProjetController::index
+
+app_projet_lister:
+    path: /projet/lister
+    controller: App\Controller\ProjetController::lister
