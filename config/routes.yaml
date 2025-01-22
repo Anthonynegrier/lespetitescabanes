@@ -113,3 +113,17 @@ app_projet_modifier:
 app_projet_supprimer:
     path: /projet/supprimer/{id}
     controller: App\Controller\ProjetController::supprimer
+
+#Contact Clients
+
+app_contact:
+    path: /contact
+    controller: App\Controller\ContactController::index
+
+app_contact_consulter:
+    path: /contact/consulter/{id}
+    controller: App\Controller\ContactController::consulter
+
+app_contact_lister:
+    path: /contact/lister
+    controller: App\Controller\ContactController::lister

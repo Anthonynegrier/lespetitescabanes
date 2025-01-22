@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter le Contact{% endblock %}
+
+{% block body %}
+    <h1>Consulter le Contact</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.nom }}</td>
+                <td>{{ contact.prenom }}</td>
+                <td>{{ contact.tel }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.message }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contact_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
