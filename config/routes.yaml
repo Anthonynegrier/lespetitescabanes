@@ -127,3 +127,7 @@ app_contact_consulter:
 app_contact_lister:
     path: /contact/lister
     controller: App\Controller\ContactController::lister
+
+app_contact_ajouter:
+    path: /contact/ajouter
+    controller: App\Controller\ContactController::ajouter
