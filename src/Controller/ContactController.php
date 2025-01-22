@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Contact;
+use App\Form\ContactType;
+
 
 
 class ContactController extends AbstractController
@@ -45,4 +47,28 @@ class ContactController extends AbstractController
             'contact' => $contacts,
         ]);
     }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $contacts = new Contact();
+	$form = $this->createForm(ContactType::class, $contacts);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $contacts = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($contacts);
+            $entityManager->flush();
+            
+   
+ 
+	    return $this->render('contact/consulter.html.twig', ['contact' => $contacts,]);
+	}
+	else
+        {
+           
+           return $this->render('contact/ajouter.html.twig', array('form' => $form->createView(),));
+	}
+}
 }
