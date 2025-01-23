@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
-
+use App\Form\ContactModifierType;
 
 
 class ContactController extends AbstractController
@@ -71,4 +71,31 @@ class ContactController extends AbstractController
            return $this->render('contact/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $contacts = $doctrine->getRepository(Contact::class)->find($id);
+ 
+	if (!$contacts) {
+	    throw $this->createNotFoundException('Aucun contact trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(ContactModifierType::class, $contacts);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $contacts = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($contacts);
+                 $entityManager->flush();
+                 return $this->render('contact/consulter.html.twig', ['contact' => $contacts,]);
+           }
+           else{
+                return $this->render('contact/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
