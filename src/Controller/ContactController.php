@@ -98,4 +98,19 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $contacts = $doctrine->getRepository(Contact::class)->find($id);
+
+     if (!$contacts) {
+         throw $this->createNotFoundException('Aucune contacts trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($contacts); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_contact_lister');
+ }
 }
