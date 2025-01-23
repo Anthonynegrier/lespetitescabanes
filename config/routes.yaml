@@ -131,3 +131,7 @@ app_contact_lister:
 app_contact_ajouter:
     path: /contact/ajouter
     controller: App\Controller\ContactController::ajouter
+
+app_contact_modifier:
+    path: /contact/modifier/{id}
+    controller: App\Controller\ContactController::modifier
