@@ -135,3 +135,7 @@ app_contact_ajouter:
 app_contact_modifier:
     path: /contact/modifier/{id}
     controller: App\Controller\ContactController::modifier
+
+app_contact_supprimer:
+    path: /contact/supprimer/{id}
+    controller: App\Controller\ContactController::supprimer
