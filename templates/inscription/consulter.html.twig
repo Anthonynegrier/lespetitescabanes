@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter l'Inscription{% endblock %}
+
+{% block body %}
+    <h1>Consulter l'Inscription</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Email</th>
+                <th>Telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ inscription.id }}</td>
+                    <td>{{ inscription.nom }}</td>
+                    <td>{{ inscription.prenom }}</td>
+                    <td>{{ inscription.dateNaiss | date("d/m/Y") }}</td>
+                    <td>{{ inscription.email }}</td>
+                    <td>{{ inscription.tel }}</td>
+                </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_inscription_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

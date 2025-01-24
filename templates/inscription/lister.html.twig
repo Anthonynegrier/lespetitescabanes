@@ -11,9 +11,6 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Date de Naissance</th>
-                <th>Email</th>
-                <th>Telephone</th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +19,6 @@
                     <td>{{ inscription.id }}</td>
                     <td>{{ inscription.nom }}</td>
                     <td>{{ inscription.prenom }}</td>
-                    <td>{{ inscription.dateNaiss | date("d/m/Y") }}</td>
-                    <td>{{ inscription.email }}</td>
-                    <td>{{ inscription.tel }}</td>
                 </tr>
             {% else %}
                 <tr>
