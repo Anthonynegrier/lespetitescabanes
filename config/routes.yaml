@@ -153,3 +153,7 @@ app_inscription_lister:
 app_inscription_consulter:
     path: /inscription/consulter/{id}
     controller: App\Controller\InscriptionController::consulter
+
+app_inscription_ajouter:
+    path: /inscription/ajouter
+    controller: App\Controller\InscriptionController::ajouter
