@@ -139,3 +139,14 @@ app_contact_modifier:
 app_contact_supprimer:
     path: /contact/supprimer/{id}
     controller: App\Controller\ContactController::supprimer
+
+#Inscription
+
+app_inscription:
+    path: /inscription
+    controller: App\Controller\InscriptionController::index
+
+app_inscription_consulter:
+    path: /inscription/lister
+    controller: App\Controller\InscriptionController::lister
+
