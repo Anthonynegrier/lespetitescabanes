@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class InscriptionType extends AbstractType
 {
@@ -23,7 +25,7 @@ class InscriptionType extends AbstractType
             'label' => 'Prenom',
             'attr' => ['class' => 'form-control', 'placeholder' => 'Prenom']
         ])
-        ->add('dateNaiss', TextType::class, [
+        ->add('dateNaiss', DateTimeType::class, [
             'label' => 'Date de Naissance',
             'attr' => ['class' => 'form-control', 'placeholder' => 'Date de Naissance']
         ])

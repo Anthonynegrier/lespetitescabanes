@@ -161,3 +161,7 @@ app_inscription_ajouter:
 app_inscription_modifier:
     path: /inscription/modifier/{id}
     controller: App\Controller\InscriptionController::modifier
+
+app_inscription_supprimer:
+    path: /inscription/supprimer/{id}
+    controller: App\Controller\InscriptionController::supprimer
