@@ -31,4 +31,19 @@ class InscriptionController extends AbstractController
         
     }
 
+    public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $inscriptions = $doctrine->getRepository(Inscription::class)->find($id);
+        
+        if (!$inscriptions) {
+            throw $this->createNotFoundException(
+                'Aucune inscription trouvé avec le numéro ' . $id
+            );
+        }
+        
+        return $this->render('inscription/consulter.html.twig', [
+            'inscription' => $inscriptions,
+        ]);
+    }
+
 }
