@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Inscriptions{% endblock %}
+
+{% block body %}
+    <h1>Liste des Inscriptions</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Email</th>
+                <th>Telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inscription in inscriptions %}
+                <tr>
+                    <td>{{ inscription.id }}</td>
+                    <td>{{ inscription.nom }}</td>
+                    <td>{{ inscription.prenom }}</td>
+                    <td>{{ inscription.dateNaiss | date("d/m/Y") }}</td>
+                    <td>{{ inscription.email }}</td>
+                    <td>{{ inscription.tel }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucune inscription trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
