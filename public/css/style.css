@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+}
+
+/* Contenu principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Tableau lister*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table thead tr {
+    background-color: #fee7d7;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 10px 10px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #e8f6f3;
+}
+
+/* Tableau consulter */
+.table-consulter {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-consulter tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.table-consulter tr:last-child {
+    border-bottom: none;
+}
+
+.table-consulter td {
+    padding: 10px 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 16px;
+    color: black;
+}
+
+.table-consulter td:first-child {
+    font-weight: bold;
+    color: black;
+    background-color: #f3f3f3;
+}
+
+.table-consulter td:last-child {
+    color: black;
+}
+
+.bouton-modifier, .bouton-consulter {
+    background-color: #fee7d7;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.bouton-modifier:hover, .bouton-consulter:hover {
+    background-color: #1abc9c;
+}
+
+.bouton-supprimer {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.bouton-supprimer:hover {
+    background-color: #921925;
+}
+
+.bouton-ajouter {
+    background-color: #2ebe50;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.bouton-ajouter:hover {
+    background-color: #1e8035;
+}
+
+.bouton-arriere {
+    background-color: #fee7d7;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.bouton-arriere:hover {
+    background-color: #1abc9c;
+}
+
+/* Amélioration responsive */
+@media (max-width: 768px) {
+    .navbar {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .navbar h1 {
+        font-size: 20px;
+    }
+
+    .content {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+
+/* Style du formulaire */
+form {
+    padding: 20px;
+}
+
+/* Labels */
+form .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #fee7d7;
+}
+
+/* Champs */
+form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Boutons */
+form .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #2ebe50;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+form .btn:hover {
+    background-color: #1e8035;
+}
+
+form .btn-secondary {
+    background-color: #fee7d7;
+    color: white;
+}
+
+form .btn-secondary:hover {
+    background-color: #1abc9c;
+}
+
+form .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+form .btn-danger:hover {
+    background-color: #921925;
+}
+
+/* Messages d'erreur */
+form .form-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Amélioration responsive */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+}
+

@@ -35,19 +35,23 @@ public function lister(ManagerRegistry $doctrine){
 }
 
 public function consulter(ManagerRegistry $doctrine, int $id): Response
-    {
-        $creches = $doctrine->getRepository(Creche::class)->find($id);
-        
-        if (!$creches) {
-            throw $this->createNotFoundException(
-                'Aucune creche trouvée avec le numéro ' . $id
-            );
-        }
-        
-        return $this->render('creche/consulter.html.twig', [
-            'creche' => $creches,
-        ]);
+{
+    $creches = $doctrine->getRepository(Creche::class)->find($id);
+    
+    if (!$creches) {
+        throw $this->createNotFoundException(
+            'Aucune crèche trouvée avec le numéro ' . $id
+        );
     }
+
+    $personnels = $creches->getPersonnels(); 
+
+    return $this->render('creche/consulter.html.twig', [
+        'creche' => $creches,
+        'personnels' => $personnels,
+    ]);
+}
+
 
     public function ajouter(ManagerRegistry $doctrine,Request $request){
         $creches = new Creche();

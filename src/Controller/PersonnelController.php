@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Personnel;
+use App\Entity\Creche;
 use App\Form\PersonnelType;
 use App\Form\PersonnelModifierType;
 
@@ -45,6 +46,7 @@ class PersonnelController extends AbstractController
         
         return $this->render('personnel/consulter.html.twig', [
             'personnel' => $personnels,
+            
         ]);
     }
 

@@ -3,6 +3,7 @@
 {% block title %}Consulter la Crèche{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_creche_lister') }}" class="btn btn-secondary">Retour à la liste</a>
     <h1>Consulter la Crèche</h1>
 
     <table>
@@ -31,6 +32,30 @@
             </tr>
         </tbody>
     </table>
-    
-    <a href="{{ path('app_creche_lister') }}" class="btn btn-secondary">Retour à la liste</a>
+
+    <h1>Personnel appartenant à la crèche</h1>
+    <table class="table-consulter">
+        <thead>
+            <tr>
+                <th>Nom Prenom</th>
+                <th>ID</th>
+                <th>Poste</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if creche.personnels is not empty %}
+                {% for personnel in creche.personnels %}
+                    <tr>
+                        <td>{{ personnel.nom }} {{ personnel.prenom }}</td>
+                        <td>{{ personnel.id }}</td>
+                        <td>{{ personnel.poste }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun personnel trouvé.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
 {% endblock %}

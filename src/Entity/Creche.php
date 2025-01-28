@@ -36,6 +36,12 @@ class Creche
     #[ORM\Column]
     private ?int $copos = null;
 
+    /**
+     * @var Collection<int, Personnel>
+     */
+    #[ORM\OneToMany(targetEntity: Personnel::class, mappedBy: 'creche', cascade: ['persist', 'remove'])]
+    private Collection $personnels;
+
     public function __construct()
     {
         $this->personnels = new ArrayCollection();
@@ -129,4 +135,34 @@ class Creche
 
         return $this;
     }
-} 
+
+    /**
+     * @return Collection<int, Personnel>
+     */
+    public function getPersonnels(): Collection
+    {
+        return $this->personnels;
+    }
+
+    public function addPersonnel(Personnel $personnel): static
+    {
+        if (!$this->personnels->contains($personnel)) {
+            $this->personnels->add($personnel);
+            $personnel->setCreche($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonnel(Personnel $personnel): static
+    {
+        if ($this->personnels->removeElement($personnel)) {
+            // set the owning side to null (unless already changed)
+            if ($personnel->getCreche() === $this) {
+                $personnel->setCreche(null);
+            }
+        }
+
+        return $this;
+    }
+}
