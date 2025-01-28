@@ -22,6 +22,9 @@ class Personnel
     #[ORM\Column(length: 255)]
     private ?string $poste = null;
 
+    #[ORM\ManyToOne(targetEntity: Creche::class, inversedBy: 'personnels')]
+    private ?Creche $creche = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +65,17 @@ class Personnel
 
         return $this;
     }
+
+    public function getCreche(): ?Creche
+    {
+        return $this->creche;
+    }
+
+    public function setCreche(?Creche $creche): static
+    {
+        $this->creche = $creche;
+
+        return $this;
+    }
 }
+
